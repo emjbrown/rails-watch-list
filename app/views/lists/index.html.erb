@@ -1,4 +1,7 @@
 <h1>All Lists</h1>
+<p><%= link_to 'Create a list', new_list_path %></p>
 <% @lists.each do |list| %>
-  <%= link_to list.name, list %>
+  <div class="card p-3 m-3">
+    <%= link_to list.name, list %>
+  </div>
 <% end %>
