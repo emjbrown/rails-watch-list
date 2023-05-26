@@ -11,10 +11,12 @@ class BookmarksController < ApplicationController
   end
 
   def create
-    @movie = Movie.find(params[:movie_id])
-    @list = List.find(params[:list_id])
+    # raise
+    # @movie = Movie.find(params[:movie_id])
+    # @list = List.find(params[:list_id])
     @bookmark = Bookmark.new(bookmark_params)
     @bookmark.save
+    redirect_to
   end
 
   def destroy
