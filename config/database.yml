@@ -14,3 +14,5 @@ test:
 production:
   <<: *default
   database: rails-watch-list_production
+  username: rails-watch-list
+  password: <%= ENV["RAILS_WATCH_LIST_DATABASE_PASSWORD"] %>
