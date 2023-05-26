@@ -3,7 +3,8 @@
 <p><%= link_to 'Add a movie to your list', new_list_bookmark_path(@list) %></p>
 <% @list.movies.each do |movie| %>
   <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
-    <div class="card">
+    <div class="card-category"
+          style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @bookmark.photos.first.key, height: 300, crop: :fill %>')">
       <h2><%= movie.title %></h2>
       <p><%= bookmark.comment %></p>
     </div>
