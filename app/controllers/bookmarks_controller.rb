@@ -1,9 +1,4 @@
 class BookmarksController < ApplicationController
-  # def index
-  #   @bookmarks = Bookmark.all
-  # end
-  # is it because I need a /bookmarks path in order
-  # to create bookmarks/new?
 
   def new
     @list = List.find(params[:list_id])
@@ -11,17 +6,20 @@ class BookmarksController < ApplicationController
   end
 
   def create
-    # raise
-    # @movie = Movie.find(params[:movie_id])
-    # @list = List.find(params[:list_id])
+    @list = List.find(params[:list_id])
     @bookmark = Bookmark.new(bookmark_params)
-    @bookmark.save
-    redirect_to
+    @bookmark.list = @list
+    if @bookmark.save
+      redirect_to list_path(@list)
+    else
+      render :new
+    end
   end
 
   def destroy
-    @bookmark = Bookmark.find(:id)
+    @bookmark = Bookmark.find(params[:id])
     @bookmark.destroy
+    redirect_to list_path(@bookmark.list), status: :see_other
   end
 
   private

@@ -1,6 +1,10 @@
 <h1><%= @list.name %></h1>
 <p><%= link_to 'Back to all lists', root_path %></p>
-<%= @list.movies %>
-<%= @list.movies.each do |movie| %>
-    <%= movie.title %>
+<p><%= link_to 'Add a movie to your list', new_list_bookmark_path(@list) %></p>
+<% @list.movies.each do |movie| %>
+  <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
+    <div class="card">
+      <h2><%= movie.title %></h2>
+      <p><%= bookmark.comment %></p>
+    </div>
 <% end %>
