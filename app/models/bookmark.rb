@@ -1,7 +1,7 @@
 class Bookmark < ApplicationRecord
-  belongs_to :movie, dependent: :destroy
+  # When deleting bookmark, ensure all associated movies are deleted from bookmark
+  belongs_to :movie
   belongs_to :list
-  has_one_attached :photo
 
   validates_associated :movie, :list
   validates :movie_id, uniqueness: { scope: :list_id }
